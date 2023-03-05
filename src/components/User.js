@@ -1,14 +1,14 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link,  useParams } from 'react-router-dom'
 function User() {
-  {/*Burada useParams kullanık ve userden gelen id burada gözükecektir*/ }
+  {/*Burada useParams kullanık ve userden gelen id burada gözükecektir*/}
   const { id } = useParams()
   const [user, setUser] = useState()
   const [isLoading, setLoading] = useState(true)
 
 
-  {/*Apimizin users/"Buraya useParams'taki tanımladığımız yani userden gelen id'yi yazmamız yeterli ve id'yi useEffet ile aktarmamız önemli"*/ }
+  {/*Apimizin users/"Buraya useParams'taki tanımladığımız yani userden gelen id'yi yazmamız yeterli ve id'yi useEffet ile aktarmamız önemli"*/}
 
   useEffect(() => {
     axios(`https://jsonplaceholder.typicode.com/users/${id}`)
@@ -19,7 +19,7 @@ function User() {
   return (
     <div>
 
-      <h1>{id} User Detaliy</h1>
+      <h1>{id} 'is User Address </h1>
       {isLoading && <div>Loading......</div>}
       <code>
         {!isLoading && <ul>

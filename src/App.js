@@ -1,12 +1,13 @@
 
 import './App.css';
 
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Routes } from 'react-router-dom';
 import About from './components/About';
 import Home from './components/Home';
 import Users from './components/Users';
+import Error404 from './components/Error404';
 {/* Yukarıdaki Hookları tanımlamayı unutmayın !*/ }
-function App() {
+function App({ activeStyle, isActive }) {
 
   return (
     <Router>
@@ -14,13 +15,23 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <NavLink 
+              to="/" 
+              className={({ isActive }) =>
+              isActive ? "activeClassName" : undefined
+            }>
+                  Home
+              </NavLink>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <NavLink to="/about" className={({ isActive }) =>
+              isActive ? "activeClassName" : undefined
+            }>About</NavLink>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <NavLink to="/users" className={({ isActive }) =>
+              isActive ? "activeClassName" : undefined
+            } >Users</NavLink>
             </li>
           </ul>
         </nav>
@@ -31,6 +42,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/users/*' element={<Users />} /> {/*Burada tanımladığımız path='/users/*' dikat edelim !
           Çünkü buradan usersın altındaki elemanlara ulaşıcağız ardından Users.js  gidelim */}
+        <Route path='*' element={<Error404/>}/>
       </Routes>
     </Router>
   );
